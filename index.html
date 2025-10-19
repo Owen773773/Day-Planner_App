@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Day Plan</title>
+    <link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/script.js" defer></script>
+	<script type="text/javascript" src="js/todo.js" defer></script>
+</head>
+<body>
+    <header>
+        <div id="hamburger_menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <p>Today's Plan</p>
+    </header>
+    
+    <div id="container">
+        <div class="table_title">
+            <span>Plan Names</span>
+            <span>Description</span>
+            <span>Start Time</span>
+            <span>End Time</span>
+        </div>
+    </div>
+    <p id="empty_container">Start Planning Now</p>
+    <button id="add_btn">+</button>
+
+    <div id="background"></div>
+    
+    <div id="add_pop-up">
+        <div id="pop-up_header">
+            <p>Add Plan</p>
+            <button id="exit_btn">x</button>
+        </div>
+
+        <div id="add_pop-up_container">
+            <label for="input_title" class="title text_title">
+                Title
+            </label>
+            <input type="text" id="input_title" name="input_title" class="title">
+    
+            <label for="input_desc" class="desc text_desc">
+                Description
+            </label>
+            <textarea name="input_desc" id="input_desc" class="desc"></textarea>
+    
+            <label for="input_start_time" class="time start_time text_start_time">
+                Start Time
+            </label>
+            <input type="time" name="input_start_time" id="input_start_time" class="time start_time">
+    
+            <label for="input_end_time" class="time emd_time text_end_time">
+                End Time
+            </label>
+            <input type="time" name="input_end_time" id="input_end_time" class="time end_time">
+        </div>
+    </div>
+</body>
+</html>
