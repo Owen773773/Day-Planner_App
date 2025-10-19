@@ -1,4 +1,4 @@
-class todoList {
+class TodoList {
     constructor() {
         this.todo_list = [];
     }
@@ -9,5 +9,6 @@ class todoList {
 
     push(todo) {
         todoList.push(todo);
+        todoList.sort((a, b) => a.start-b.start);
     }
 }
