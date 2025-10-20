@@ -5,4 +5,8 @@ class Todo {
         this.start = start;
         this.end = end;
     }
+
+    toString() {
+        return this.title + " " + this.desc + " " + this.start + " " + this.end;
+    }
 }

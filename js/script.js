@@ -19,11 +19,14 @@ function add_todo(event) {
     let get_input_start_time_value = document.querySelector("#input_start_time").value;
     let get_input_end_time_value = document.querySelector("#input_end_time").value;
 
-    if (get_input_title_value.length === 0) alert("Please insert the title.");
+    if (
+        get_input_title_value.length === 0 ||
+        get_input_start_time_value.length === 0 ||
+        get_input_end_time_value.length === 0
+    ) alert("Please complete the procedure.");
+
     else {
         if (get_input_desc_value.length === 0) get_input_desc_value = "-";
-        if (get_input_start_time_value.length === 0) get_input_start_time_value = "-";
-        if (get_input_end_time_value.length === 0) get_input_end_time_value = "-";
 
         let todo = new Todo(
             get_input_title_value,

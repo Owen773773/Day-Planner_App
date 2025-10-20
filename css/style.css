@@ -3,9 +3,14 @@
     src: url("../font/poppins/Poppins-Regular.ttf");
 }
 
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../font/Montserrat/static/Montserrat-Regular.ttf");
+}
+
 body {
     margin: 0;
-    background-color: #FDFD96;
+    background-color: white;
     font-family: "Poppins-Regular";
     color: #522C00;
     height: 100vh;
@@ -65,11 +70,23 @@ header > p {
     grid-area: end;
 }
 
-#empty_container {
+#empty_container > span {
     font-size: 30px;
     color: #676767;
     display: block;
-    justify-self: center;
+    font-family: "Montserrat-Regular";
+    font-style: italic;
+    position: absolute;
+}
+
+#empty_container > span:nth-child(1) {
+    right: 45%;
+    bottom: 50%;
+}
+
+#empty_container > span:nth-child(2) {
+    left: 45%;
+    top: 50%;
 }
 
 .btn {
@@ -98,7 +115,7 @@ header > p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #FDFD96;
+    background-color: #FFFFCC;
 }
 
 #background {
@@ -136,16 +153,18 @@ header > p {
 #add_pop-up_container {
     display: grid;
     grid-template-columns: 300px 300px;
-    grid-template-rows: repeat(3, 25px) 75px repeat(2, 25px);
+    grid-template-rows: repeat(2, 25px) 10px 25px 75px 10px repeat(2, 25px);
     grid-template-areas: 
         "title_text ."
         "title_input ."
+        ". ."
         "desc_text ."
         "desc_input desc_input"
+        ". ."
         "st_text ed_text"
         "st_input ed_input"
     ;
-    gap: 10px;
+    column-gap: 10px;
     padding: 15px;
 }
 
@@ -159,6 +178,10 @@ header > p {
 
 #add_pop-up_container > .text_desc {
     grid-area: desc_text;
+}
+
+#add_pop-up_container .optional_msg {
+    font-size: 10px;
 }
 
 #add_pop-up_container > #input_desc {
@@ -184,8 +207,8 @@ header > p {
 
 #add_pop-up_container > input, textarea {
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: #FFEFD4;
+    border: 1.5px solid #4E2A00;
+    background-color: white;
 }
 
 #accept_btn {
