@@ -1,4 +1,8 @@
+let todoList = new TodoList();
+
 function show_add(event) {
+    emptying_input();
+
     const get_add_popup = document.querySelector("#add_pop-up");
     const get_background_popup = document.querySelector("#background");
     get_add_popup.style.display = "block";
@@ -6,6 +10,16 @@ function show_add(event) {
 
     const get_exit_btn = document.querySelector("#exit_btn");
     get_exit_btn.addEventListener("click", () => remove_show_todo(event, get_add_popup, get_background_popup));
+}
+
+function emptying_input() {
+    const all_input_popup_container = document.querySelectorAll(
+        "#add_pop-up_container input, #add_pop-up_container textarea"
+    );
+
+    for (const input of all_input_popup_container) {
+        input.value = "";
+    }
 }
 
 function remove_show_todo(event, get_add_popup, get_background_popup) {
@@ -35,8 +49,53 @@ function add_todo(event) {
             get_input_end_time_value
         );
 
-        let todoList = new TodoList();
+        todoList.push(todo);
+
+        add_plan_to_screen(todo);
+        add_plan_to_css_grid();
+
+        const get_add_popup = document.querySelector("#add_pop-up");
+        const get_background_popup = document.querySelector("#background");
+        get_add_popup.style.display = "none";
+        get_background_popup.style.display = "none";
     }
+}
+
+function add_plan_to_screen(todo) {
+    const get_container = document.querySelector("#container");
+    const get_content_row = document.querySelector("#content0");
+
+    const clone_content_row = get_content_row.cloneNode(true);
+    //mulai dari 1 -> content1, content2, ...
+    clone_content_row.id = "content" + todoList.length();
+    clone_content_row.grid_area = "content" + todoList.length();
+    clone_content_row.style.display = "grid";
+
+    //copy todo to new plan
+    const content = clone_content_row.children;
+    content[0].textContent = todo.title;
+    content[1].textContent = todo.desc;
+    content[2].textContent = todo.start;
+    content[3].textContent = todo.end;
+
+    get_container.appendChild(clone_content_row);
+}
+
+function add_plan_to_css_grid() {
+    const get_container = document.querySelector("#container");
+    const get_current_content = document.querySelector("#content" + todoList.length());
+    let grid_template = get_container.style.gridTemplateAreas;
+    grid_template += `\n"content${todoList.length()}"`;
+}
+
+function show_empty_container(event) {
+    const get_empty_container = document.querySelector("#empty_container");
+    get_empty_container.style.display = "block";
+}
+
+function close_empty_container(event) {
+    const get_empty_container = document.querySelector("#empty_container");
+    get_empty_container.style.display = "none";
 }
 
 (function () {
@@ -45,4 +104,7 @@ function add_todo(event) {
     
     const get_accept_btn = document.querySelector("#accept_btn");
     get_accept_btn.addEventListener("click", add_todo);
+
+    todoList.addEventListener("empty", close_empty_container);
+    todoList.addEventListener("filled", show_empty_container);
 })();

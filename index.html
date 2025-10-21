@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next Day Plan</title>
     <link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/TodoList.js" defer></script>
+	<script type="text/javascript" src="js/Todo.js" defer></script>
 	<script type="text/javascript" src="js/script.js" defer></script>
-	<script type="text/javascript" src="js/todo.js" defer></script>
 </head>
 <body>
     <header>
@@ -26,7 +27,15 @@
             <span>Start Time</span>
             <span>End Time</span>
         </div>
+        
+        <div id="content0" class="content_row">
+            <span class="content_row_text title">-</span>
+            <span class="content_row_text desc">-</span>
+            <span class="content_row_text st">-</span>
+            <span class="content_row_text et">-</span>
+        </div>
     </div>
+
     <div id="empty_container">
         <span>Start Your</span>
         <span>Day Now</span>
@@ -66,5 +75,6 @@
             <button type="button" id="accept_btn" class="btn">Add</button>
         </div>
     </div>
+    <!-- end of pop-up area -->
 </body>
 </html>

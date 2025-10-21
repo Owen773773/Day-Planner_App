@@ -1,5 +1,6 @@
-class TodoList {
+class TodoList extends EventTarget{
     constructor() {
+        super();
         this.todo_list = [];
     }
 
@@ -8,7 +9,19 @@ class TodoList {
     }
 
     push(todo) {
-        todoList.push(todo);
-        todoList.sort((a, b) => a.start-b.start);
+        this.todo_list.push(todo);
+        this.todo_list.sort((a, b) => a.start-b.start);
+
+        //kirim event
+        this._dispatchStateChange();
+    }
+
+    _dispatchStateChange() {
+        if (this.isEmpty()) this.dispatchEvent(new Event("empty"));
+        else this.dispatchEvent(new Event("filled"));
+    }
+
+    length() {
+        return this.todo_list.length;
     }
 }
