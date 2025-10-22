@@ -10,7 +10,9 @@ class TodoList extends EventTarget{
 
     push(todo) {
         this.todo_list.push(todo);
-        this.todo_list.sort((a, b) => a.start-b.start);
+        this.todo_list.sort((a, b) => {
+            return new Date(`1970-01-01T${a.start}`) - new Date(`1970-01-01T${b.start}`);
+        });
 
         //kirim event
         this._dispatchStateChange();

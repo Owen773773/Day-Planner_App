@@ -51,7 +51,7 @@ function add_todo(event) {
 
         todoList.push(todo);
 
-        add_plan_to_screen(todo);
+        refresh_plan_to_screen();
         add_plan_to_css_grid();
 
         const get_add_popup = document.querySelector("#add_pop-up");
@@ -61,41 +61,52 @@ function add_todo(event) {
     }
 }
 
-function add_plan_to_screen(todo) {
+function refresh_plan_to_screen() {
     const get_container = document.querySelector("#container");
     const get_content_row = document.querySelector("#content0");
 
-    const clone_content_row = get_content_row.cloneNode(true);
-    //mulai dari 1 -> content1, content2, ...
-    clone_content_row.id = "content" + todoList.length();
-    clone_content_row.grid_area = "content" + todoList.length();
-    clone_content_row.style.display = "grid";
+    todoList.todo_list.forEach((todo, index) => {
+        const content_x = document.getElementById("content" + (index+1));
+        if (content_x !== null) content_x.remove();
 
-    //copy todo to new plan
-    const content = clone_content_row.children;
-    content[0].textContent = todo.title;
-    content[1].textContent = todo.desc;
-    content[2].textContent = todo.start;
-    content[3].textContent = todo.end;
+        const clone_content_row = get_content_row.cloneNode(true);
+        
+        //mulai dari 1 -> content1, content2, ...
+        clone_content_row.id = "content" + (index+1);
+        clone_content_row.grid_area = "content" + (index+1);
+        clone_content_row.style.display = "grid";
+    
+        //copy todo to new plan
+        const content = clone_content_row.children;
+        content[0].textContent = todo.title;
+        content[1].textContent = todo.desc;
+        content[2].textContent = todo.start;
+        content[3].textContent = todo.end;
 
-    get_container.appendChild(clone_content_row);
+        get_container.appendChild(clone_content_row);
+    });
 }
 
 function add_plan_to_css_grid() {
     const get_container = document.querySelector("#container");
-    const get_current_content = document.querySelector("#content" + todoList.length());
     let grid_template = get_container.style.gridTemplateAreas;
-    grid_template += `\n"content${todoList.length()}"`;
+    grid_template += `\n"content${(todoList.length())}"`;
 }
 
 function show_empty_container(event) {
     const get_empty_container = document.querySelector("#empty_container");
+    const get_table_title = document.querySelector("#container > .table_title");
+    
     get_empty_container.style.display = "block";
+    get_table_title.style.display = "none";
 }
 
 function close_empty_container(event) {
     const get_empty_container = document.querySelector("#empty_container");
+    const get_table_title = document.querySelector("#container > .table_title");
+
     get_empty_container.style.display = "none";
+    get_table_title.style.display = "grid";
 }
 
 (function () {
