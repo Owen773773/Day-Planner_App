@@ -109,6 +109,12 @@ function close_empty_container(event) {
     get_table_title.style.display = "grid";
 }
 
+function open_notes(event) {
+    const get_clicked_content = event.target;
+    
+    window.location.href = "notes.html";
+}
+
 (function () {
     const get_add_btn = document.querySelector("#add_btn");
     get_add_btn.addEventListener("click", show_add);
@@ -118,4 +124,7 @@ function close_empty_container(event) {
 
     todoList.addEventListener("empty", close_empty_container);
     todoList.addEventListener("filled", show_empty_container);
+
+    const get_container = document.getElementById("container");
+    get_container.addEventListener("click", open_notes);
 })();

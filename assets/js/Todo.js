@@ -4,6 +4,7 @@ class Todo {
         this.desc = desc;
         this.start = start;
         this.end = end;
+        this.notes = "";
     }
 
     toString() {
