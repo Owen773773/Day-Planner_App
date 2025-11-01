@@ -1,5 +1,6 @@
 class Todo {
-    constructor(title, desc, start, end) {
+    constructor(id, title, desc, start, end) {
+        this.id = id;
         this.title = title;
         this.desc = desc;
         this.start = start;

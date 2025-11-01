@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url("../font/poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../font/Montserrat/static/Montserrat-Regular.ttf");
+}
+
+body {
+    margin: 0;
+    background-color: white;
+    font-family: "Poppins-Regular";
+    color: #522C00;
+    height: 100vh;
+}

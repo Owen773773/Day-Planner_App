@@ -28,6 +28,7 @@ function remove_show_todo(event, get_add_popup, get_background_popup) {
 }
 
 function add_todo(event) {
+    const get_id = "content" + (todoList.todo_list.length + 1);
     const get_input_title_value = document.querySelector("#input_title").value;
     let get_input_desc_value = document.querySelector("#input_desc").value;
     let get_input_start_time_value = document.querySelector("#input_start_time").value;
@@ -37,12 +38,12 @@ function add_todo(event) {
         get_input_title_value.length === 0 ||
         get_input_start_time_value.length === 0 ||
         get_input_end_time_value.length === 0
-    ) alert("Please complete the procedure.");
-
+    ) {alert("Please complete the procedure.");}
     else {
         if (get_input_desc_value.length === 0) get_input_desc_value = "-";
 
         let todo = new Todo(
+            get_id,
             get_input_title_value,
             get_input_desc_value,
             get_input_start_time_value,
@@ -50,6 +51,7 @@ function add_todo(event) {
         );
 
         todoList.push(todo);
+        localStorage.setItem("todoList", JSON.stringify(todoList));
 
         refresh_plan_to_screen();
         add_plan_to_css_grid();
@@ -64,8 +66,9 @@ function add_todo(event) {
 function refresh_plan_to_screen() {
     const get_container = document.querySelector("#container");
     const get_content_row = document.querySelector("#content0");
+    const todolist_localStorage = JSON.parse(localStorage.getItem("todoList"));
 
-    todoList.todo_list.forEach((todo, index) => {
+    todolist_localStorage.todoList.forEach((todo, index) => {
         const content_x = document.getElementById("content" + (index+1));
         if (content_x !== null) content_x.remove();
 
@@ -111,7 +114,9 @@ function close_empty_container(event) {
 
 function open_notes(event) {
     const get_clicked_content = event.target;
-    
+    const get_id_content = get_clicked_content.id;
+
+    sessionStorage.setItem("todo_note", get_id_content);
     window.location.href = "notes.html";
 }
 
